@@ -1,17 +1,17 @@
-import { describe, expect, test } from 'vitest';
-import { getAPIKey } from 'src/api/auth';
-import { IncomingHttpHeaders } from 'http';
+import { describe, expect, test } from "vitest";
+import { getAPIKey } from "src/api/auth";
+import { IncomingHttpHeaders } from "http";
 
 const noHeader = {} as IncomingHttpHeaders;
-const noTokenHeader: IncomingHttpHeaders = { authorization: 'ApiKey' };
-const emptyKeyHeader: IncomingHttpHeaders = { authorization: '' };
+const noTokenHeader: IncomingHttpHeaders = { authorization: "ApiKey" };
+const emptyKeyHeader: IncomingHttpHeaders = { authorization: "" };
 const presentKeyHeader: IncomingHttpHeaders = {
-  authorization: 'ApiKey present_token',
+  authorization: "ApiKey present_token",
 };
-const bearerKeyHeader: IncomingHttpHeaders = { authorization: 'Bearer token' };
+const bearerKeyHeader: IncomingHttpHeaders = { authorization: "Bearer token" };
 
-describe('Auth API', () => {
-  test('getAPIKey should return null for missing API key', () => {
+describe("Auth API", () => {
+  test("getAPIKey should return null for missing API key", () => {
     const apiKey = getAPIKey(emptyKeyHeader);
     expect(apiKey).toBeNull();
   });
@@ -26,17 +26,17 @@ describe('Auth API', () => {
     expect(apiKey).toBeNull();
   });
 
-  test('returns null when header is missing', () => {
+  test("returns null when header is missing", () => {
     expect(getAPIKey(noHeader)).toBeNull();
   });
 
-  test('returns token when scheme is ApiKey', () => {
-    expect(getAPIKey({ authorization: 'ApiKey present_token' })).toBe(
-      'present_token'
+  test("returns token when scheme is ApiKey", () => {
+    expect(getAPIKey({ authorization: "ApiKey present_token" })).toBe(
+      "present_token",
     );
   });
 
-  test('returns null when scheme present but no token', () => {
+  test("returns null when scheme present but no token", () => {
     expect(getAPIKey(noTokenHeader)).toBeNull();
   });
 });
