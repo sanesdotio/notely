@@ -1,5 +1,5 @@
 {
-  "name": "learn-cicd-typescript-starter",
+  "name": "notely",
   "version": "1.0.0",
   "main": "dist/main.js",
   "type": "module",
